@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Vroom.Models.Bike>
+@{
+	ViewData["Title"]="Index";
+}
+<br />
+<br />
+<hr />
+<div class="row">
+	<div class="col-6">
+		<h2 class="text-info">Bikes</h2>
+	</div>
+	<div class="col-6 text-right">
+		<a class="btn btn-info" asp-action="Create"><i class="fa-solid fa-motorcycle"></i> &nbsp;Add New Bike</a>
+	</div>
+	<br />
+	<div class="col-12">
+		<table class="table table-striped border">
+			<tr class="table-info" >
+				<th>Bike Photo</th>
+				<th>Bike Detail</th>
+				<th>Price</th>
+				<th>Seller Information</th>
+			</tr>
+			@foreach(var item in Model)
+			{
+				<tr> 
+					<td><img src="@Html.DisplayFor(m=>item.ImagePath)" width="150px" height="100px" /></td>
+					<td>
+						<b>@Html.DisplayFor(model=>item.Make.Name) @Html.DisplayFor(model=>item.Year)</b><br>
+						<b>Model: </b>@Html.DisplayFor(model=>item.Model.Name)<br>
+						<b>Mileage: </b>@Html.DisplayFor(model=>item.Mileage)<br>
+					</td>
+					<td>
+						@Html.DisplayFor(model=>item.Price) @Html.DisplayFor(model=>item.Currency)
+					</td>
+					<td>
+						<b>Name: </b>@Html.DisplayFor(model=>item.SellerName)<br>
+						<b>Email: </b>@Html.DisplayFor(model=>item.SellerEmail)<br>
+						<b>Phone: </b>@Html.DisplayFor(model=>item.SellerPhone)<br>
+					</td>
+					<partial name="_TableButtonPartial" model="item.Id"/>
+				</tr>
+			}
+		</table>
+	</div>
+</div>

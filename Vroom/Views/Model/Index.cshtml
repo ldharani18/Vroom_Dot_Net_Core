@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Vroom.Models.Model>
+@{
+	ViewData["Title"]="Index";
+}
+<br />
+<br />
+<hr />
+<div class="row">
+	<div class="col-6">
+		<h2 class="text-info">Models of Vehicle</h2>
+	</div>
+	<div class="col-6 text-right">
+		<a class="btn btn-info" asp-action="Create"><i class="fa-solid fa-motorcycle"></i> &nbsp;Add New Model</a>
+	</div>
+	<br />
+	<div class="col-12">
+		<table class="table table-striped border">
+			<tr class="table-info" >
+				<th>
+					@Html.DisplayNameFor(model=>model.Make)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model=>model.Name)
+				</th>
+				<th class="text-right">Action</th>
+			</tr>
+			@foreach(var item in Model)
+			{
+				<tr> 
+					<td>
+						@Html.DisplayFor(model=>item.Make.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(model=>item.Name)
+					</td>
+					<partial name="_TableButtonPartial" model="item.Id"/>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
